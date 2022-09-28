@@ -59,6 +59,6 @@ public class VictoryManager : MonoBehaviour
     IEnumerator ReloadSceneRoutine()
     {
         yield return new WaitForSeconds(reloadSceneDelay);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("MainMenu");
     }
 }

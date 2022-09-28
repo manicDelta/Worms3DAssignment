@@ -6,13 +6,11 @@ public class ManualEndTurn : MonoBehaviour
 {
 
     private TurnManager _turnManager;
-    private AmountOfPlayers _amountOfPlayers;
 
     // Start is called before the first frame update
     void Start()
     {
         _turnManager = FindObjectOfType<TurnManager>();
-        _amountOfPlayers = FindObjectOfType<AmountOfPlayers>();
     }
 
     private void Update()
@@ -22,7 +20,7 @@ public class ManualEndTurn : MonoBehaviour
 
     private void EndTurn()
     {
-        if(Input.GetKeyDown(KeyCode.E) && _amountOfPlayers.gameStarted)
+        if(Input.GetKeyDown(KeyCode.E))
         {
             //Due to PlayerTurn script manually changing distanceTraveled to 0 when the conditions are met,
             //distanceTraveled will have to be changed manually here as the conditions will not be met if manually ending turn
