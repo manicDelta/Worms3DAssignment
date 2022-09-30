@@ -21,6 +21,16 @@ public class MapOverviewCamera : MonoBehaviour
         ChangeCamera();
     }
 
+    public void SetOverviewCam()
+    {
+        _overviewCamera.depth = _mainCamera.depth + 1;
+    }
+
+    public void SetDefaultCam()
+    {
+        _overviewCamera.depth = _mainCamera.depth - 1;
+    }
+
     private void ChangeCamera()
     {
         if (Input.GetKeyDown(KeyCode.C))

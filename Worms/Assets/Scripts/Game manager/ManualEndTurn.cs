@@ -25,7 +25,7 @@ public class ManualEndTurn : MonoBehaviour
             //Due to PlayerTurn script manually changing distanceTraveled to 0 when the conditions are met,
             //distanceTraveled will have to be changed manually here as the conditions will not be met if manually ending turn
             _turnManager.players[_turnManager.activePlayerID].GetComponent<PlayerTurn>().distanceTraveled = 0;
-            _turnManager.ChangeTurn();
+            _turnManager.StartNextTurn();
         }
     }
 }

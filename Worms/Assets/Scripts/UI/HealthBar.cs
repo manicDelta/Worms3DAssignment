@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-
+    [SerializeField] GameObject[] healthImages;
     PlayerHealth playerHealth;
     Slider mySlider;
 
@@ -26,7 +26,17 @@ public class HealthBar : MonoBehaviour
 
     public void UpdateHealthBar()
     {
-        //Haha i did it
-        mySlider.value = Mathf.Round(playerHealth.currenthealth) / Mathf.Round(playerHealth.maxHealth);
+        //Disable the health image that comes before the first disabled health image
+        for (int i = 0; i < healthImages.Length; i++)
+        {
+            if (!healthImages[i].activeInHierarchy)
+            {
+                healthImages[i - 1].SetActive(false);
+            }
+        }
+
+        //When this is called, the last health image always is supposed to be turned off as the first health is lost
+        //Also the last health image will not turn off in the for loop as there will be no ammo turned off after it
+        healthImages[4].SetActive(false);
     }
 }

@@ -42,7 +42,7 @@ public class PlayerTurn : MonoBehaviour
         _coroutineStarted = true;
         yield return new WaitForSeconds(waitTimeForNextTurn);
 
-        _turnManager.ChangeTurn();
+        _turnManager.StartNextTurn();
         distanceTraveled = 0;
         _coroutineStarted = false;
     }

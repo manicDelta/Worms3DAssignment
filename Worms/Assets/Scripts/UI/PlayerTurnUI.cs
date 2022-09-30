@@ -17,14 +17,6 @@ public class PlayerTurnUI : MonoBehaviour
 
     public void DisplayPlayerTurn()
     {
-        //As the turnmanager starts of with starting player ones turn, we need to skip first time this is called. It gets called again when
-        //player choses how many players will be ingame, as to show which players turn it is when the game actually starts instead of before.
-        if(!_firstCalled)
-        {
-            _firstCalled = true;
-            return;
-        }
-
         //We need to add 1 to the active player id, as player 1 has ID 0, player 2 has ID 1, etc...
         _turnText.text = $"Player {_turnManager.activePlayerID + 1} Turn";
         StartCoroutine(DisplayTextRoutine());
