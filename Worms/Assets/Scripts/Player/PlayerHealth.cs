@@ -6,6 +6,7 @@ public class PlayerHealth : MonoBehaviour
 {
 
     [SerializeField] public int maxHealth;
+    [SerializeField] private float _hitFeedbackTime = 0.25f;
     public int currenthealth;
     public bool isAlive;
     private bool _isColliding;
@@ -13,6 +14,8 @@ public class PlayerHealth : MonoBehaviour
     private VictoryManager _victoryManager;
     private DeathPos _deathPos;
     private HealthBar _myHealthBar;
+    private Renderer _myRenderer;
+    private Animator _hitAnim;
 
     private void Awake()
     {
@@ -26,6 +29,8 @@ public class PlayerHealth : MonoBehaviour
         _victoryManager = FindObjectOfType<VictoryManager>();
         _deathPos = FindObjectOfType<DeathPos>();
         _myHealthBar = GetComponentInChildren<HealthBar>();
+        _myRenderer = GetComponent<Renderer>();
+        _hitAnim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -53,9 +58,21 @@ public class PlayerHealth : MonoBehaviour
             _isColliding = true;
             currenthealth--;
             _myHealthBar.UpdateHealthBar();
+            StartCoroutine(HitFeedbackRoutine());
             StartCoroutine(ResetCollidingRoutine());
             Destroy(other.gameObject);
         }
+    }
+
+    IEnumerator HitFeedbackRoutine()
+    {
+        _hitAnim.SetTrigger("HitFeedback");
+        Color32 myColor = _myRenderer.material.color;
+        _myRenderer.material.color = Color.red;
+
+        yield return new WaitForSeconds(_hitFeedbackTime);
+
+        _myRenderer.material.color = myColor;
     }
 
     IEnumerator ResetCollidingRoutine()
