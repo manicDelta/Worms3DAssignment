@@ -71,7 +71,7 @@ public class TurnManager : MonoBehaviour
         PlayerHealth activePlayerHealth = players[activePlayerID].GetComponent<PlayerHealth>();
         if (!activePlayerHealth.isAlive)
         {
-            ChangeTurn();
+            CheckNextPlayer();
             return;
         }
     }

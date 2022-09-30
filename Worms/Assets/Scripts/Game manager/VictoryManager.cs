@@ -32,9 +32,8 @@ public class VictoryManager : MonoBehaviour
             }
         }
 
-        //If 3 or more players are defeated, check find player that is not defeated and put it in victory method. If 2 players is chosen, the other 2 are
-        //automatically counted as defeated as their health is put to 0
-        if(defeatedPlayers >= 3)
+        //If 1 less players than total is defeated, go victory brrr
+        if(defeatedPlayers >= _turnManager.players.Length - 1)
         {
             for (int i = 0; i < _turnManager.players.Length; i++)
             {
